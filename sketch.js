@@ -55,39 +55,64 @@ function draw() {
 		bullet2.collide(wall2);
 		bullet3.collide(wall3);
 
-		
+	if(touch(bullet1, wall1)) {
 
-		if(bullet1.isTouching(wall1)) {
+		bullet1.velocityX = 0;
 
-		if(damage1 >= 10) {
-		wall1.shapeColor = "red"
+		damage1 = weight1 * speed1 * speed1 / (thickness1 * thickness1 * thickness1);
+
+		if(damage1 < 10) {
+
+			wall1.shapeColor = color("green");
+
 		}
 
-		if(damage1 <= 10) {
-			wall1.shapeColor = "green"
-			}
+		if(damage1 > 10) {
+
+			wall1.shapeColor = color("red");
+
+		}
+
 	}
 
-		if(bullet2.isTouching(wall2)) {
+	if(touch(bullet2, wall2)) {
 
-		if(damage2 >= 10) {
-		wall2.shapeColor = "red"
+		bullet2.velocityX = 0;
+
+		damage2 = weight2 * speed2 * speed2 / (thickness2 * thickness2 * thickness2);
+
+		if(damage2 < 10) {
+
+			wall2.shapeColor = color("green");
+
 		}
 
-		if(damage2 <= 10) {
-			wall2.shapeColor = "green"
-			}
+		if(damage2 > 10) {
+
+			wall2.shapeColor = color("red");
+
+		}
+
 	}
 
-		if(bullet3.isTouching(wall3)) {
+	if(touch(bullet3, wall3)) {
 
-		if(damage3 >= 10) {
-		wall3.shapeColor = "red"
+		bullet3.velocityX = 0;
+
+		damage3 = weight3 * speed3 * speed3 / (thickness3 * thickness3 * thickness3);
+
+		if(damage3 < 10) {
+
+			wall3.shapeColor = color("green");
+
 		}
 
-		if(damage3 <= 10) {
-			wall3.shapeColor = "green"
-			}
+		if(damage3 > 10) {
+
+			wall3.shapeColor = color("red");
+
+		}
+
 	}
 
 	console.log(damage1);
@@ -95,5 +120,18 @@ function draw() {
 	console.log(damage3);
 		
 	drawSprites();
+
+}
+
+function touch(bullet1, wall1) {
+
+	bullet1RightEdge = bullet1.x + bullet1.width;
+	wall1LeftEdge = wall1.x;
+
+	if(bullet1RightEdge >= wall1LeftEdge) {
+		return true;
+	}
+
+	return false;
 
 }
